@@ -483,7 +483,7 @@ a { text-decoration: none; color: inherit; }
 .insp-card__img--fallback-3 { background: linear-gradient(135deg, #1a1208, #2a1e0a); }
 .insp-card__body { padding: 24px; }
 .insp-card__cat { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
-.insp-card__title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); margin: 8px 0 10px; line-height: 1.4; }
+.insp-card__title { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--cream); margin: 8px 0 10px; line-height: 1.4; }
 .insp-card__text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
 .insp-card__link { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.05em; transition: var(--trans); }
 .insp-card__link:hover { color: var(--gold-light); }

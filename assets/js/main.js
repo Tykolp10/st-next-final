@@ -22,7 +22,7 @@ if (sessionStorage.getItem('st-age-verified')) {
     document.querySelector('.age-gate__content').innerHTML =
       '<p class="age-gate__tagline">Terima Kasih</p>' +
       '<h2 class="age-gate__title">Sampai Jumpa Lagi</h2>' +
-      '<p class="age-gate__desc">Situs ini hanya untuk pengunjung dewasa berusia 18 tahun ke atas. ' +
+      '<p class="age-gate__desc">Situs ini hanya untuk pengunjung dewasa berusia 21 tahun ke atas. ' +
       'Terima kasih atas kunjungan Anda.</p>' +
       '<p class="age-gate__warning">Merokok membunuh. Iklan ini ditujukan untuk perokok dewasa.</p>';
   });
