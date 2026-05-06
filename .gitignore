@@ -1,0 +1,26 @@
+# ===================================
+# FILE INTERNAL — JANGAN DIUPLOAD
+# ===================================
+
+# Dokumen internal perusahaan
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.pptx
+
+# File sistem Windows
+desktop.ini
+Thumbs.db
+*.lnk
+
+# File server lokal (tidak relevan di GitHub)
+START-SERVER.bat
+START-SERVER-POWERSHELL.bat
+server.ps1
+copy_assets.ps1
+test-server.ps1
+
+# Folder temp/cache
+.cache/
+node_modules/

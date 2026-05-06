@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ST Sehat Tentrem – Warisan Ketenangan Nusantara</title>
+  <meta name="description" content="ST Sehat Tentrem – Rokok kretek premium dengan jiwa tenang dan warisan budaya Nusantara yang kaya." />
+  <link rel="icon" href="assets/images/brand/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- SACRED HEADER BAR -->
+  <div class="sacred-bar">
+    <span class="sacred-bar__text">ATAS BERKAT ROCHMAT LLOH YANG MAHA KUASA</span>
+  </div>
+
+  <!-- AGE GATE OVERLAY -->
+  <div id="age-gate" class="age-gate">
+    <div class="age-gate__bg"></div>
+    <div class="age-gate__content">
+      <div class="age-gate__logo">
+        <img src="assets/images/brand/logo-st.png" alt="ST Sehat Tentrem" class="age-gate__logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+        <span class="age-gate__logo-fallback" style="display:none">ST</span>
+      </div>
+      <p class="age-gate__tagline">Sehat Tentrem</p>
+      <h2 class="age-gate__title">Warisan Ketenangan Nusantara</h2>
+      <p class="age-gate__desc">Situs ini hanya untuk pengunjung dewasa berusia 18 tahun ke atas. Apakah Anda berusia 18 tahun atau lebih?</p>
+      <div class="age-gate__actions">
+        <button id="age-yes" class="btn btn--gold">Ya, Saya Berusia 18+</button>
+        <button id="age-no" class="btn btn--outline">Tidak</button>
+      </div>
+      <p class="age-gate__warning">Merokok membunuh. Iklan ini ditujukan untuk perokok dewasa.</p>
+    </div>
+  </div>
+
+  <!-- MAIN SITE (hidden until age verified) -->
+  <div id="main-site" class="main-site hidden">
+
+    <!-- NAVBAR -->
+    <header id="navbar" class="navbar">
+      <div class="navbar__inner container">
+        <a href="#hero" class="navbar__logo" aria-label="Kembali ke beranda">
+          <img src="assets/images/brand/logo-st.png" alt="ST Sehat Tentrem Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+          <span class="navbar__logo-text" style="display:none">ST</span>
+        </a>
+        <nav class="navbar__nav" id="main-nav">
+          <a href="#hero" class="nav-link">Beranda</a>
+          <a href="#about" class="nav-link">Tentang Kami</a>
+          <a href="#products" class="nav-link">Produk</a>
+          <a href="#ambassador" class="nav-link">Ambassador</a>
+          <a href="#inspirasi" class="nav-link">Inspirasi</a>
+          <a href="#csr" class="nav-link">CSR</a>
+          <a href="#cerita" class="nav-link">Cerita ST</a>
+          <a href="#kontak" class="nav-link">Kontak</a>
+        </nav>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="navbar__backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+      <div class="hero__slider" id="hero-slider">
+        <div class="hero__slide active" style="background-image:url('assets/images/hero/hero-1.jpg')">
+          <div class="hero__slide-inner fallback-bg-1"></div>
+          <div class="hero__slide-caption">Dari Jombang — Untuk Indonesia Raya</div>
+        </div>
+        <div class="hero__slide" style="background-image:url('assets/images/hero/hero-2.jpg')">
+          <div class="hero__slide-inner fallback-bg-2"></div>
+          <div class="hero__slide-caption">Warisan Ketenangan Nusantara</div>
+        </div>
+        <div class="hero__slide" style="background-image:url('assets/images/hero/hero-3.jpg')">
+          <div class="hero__slide-inner fallback-bg-3"></div>
+          <div class="hero__slide-caption">Brand Ambassador ST · Untuk Indonesia Raya</div>
+        </div>
+      </div>
+      <!-- Aurora Gradient Overlay (Apple Style) -->
+      <div class="hero__aurora">
+        <div class="aurora-blob aurora-blob--1"></div>
+        <div class="aurora-blob aurora-blob--2"></div>
+        <div class="aurora-blob aurora-blob--3"></div>
+      </div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content container">
+        <p class="hero__eyebrow">Digagas 2013 · Berdiri 2017 · Untuk Indonesia Raya</p>
+        <h1 class="hero__title">
+          <img src="assets/images/brand/logo_teksST.png" alt="Sehat Tentrem" class="hero__title-img" />
+        </h1>
+        <p class="hero__subtitle">Sehat Tentrem — Untuk Indonesia Raya. Dari Jombang, untuk seluruh jiwa yang mencintai Nusantara.</p>
+        <a href="#products" class="btn btn--gold hero__cta">Jelajahi Produk Kami</a>
+      </div>
+      <div class="hero__dots" id="hero-dots">
+        <span class="hero__dot active" data-idx="0"></span>
+        <span class="hero__dot" data-idx="1"></span>
+        <span class="hero__dot" data-idx="2"></span>
+      </div>
+      <div class="hero__scroll-hint">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- MARQUEE STRIP -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span>Sehat Tentrem</span><span class="sep">✦</span>
+        <span>Untuk Indonesia Raya</span><span class="sep">✦</span>
+        <span>Kretek Tangan Premium</span><span class="sep">✦</span>
+        <span>Sejak 2013</span><span class="sep">✦</span>
+        <span>Jombang · Jawa Timur</span><span class="sep">✦</span>
+        <span>Sehat Tentrem</span><span class="sep">✦</span>
+        <span>Untuk Indonesia Raya</span><span class="sep">✦</span>
+        <span>Kretek Tangan Premium</span><span class="sep">✦</span>
+        <span>Sejak 2013</span><span class="sep">✦</span>
+        <span>Jombang · Jawa Timur</span><span class="sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about section">
+      <div class="container about__grid">
+        <div class="about__image reveal-left">
+          <div class="about__img-wrapper">
+            <img src="assets/images/brand/about-st.jpg" alt="Tentang ST Sehat Tentrem" onerror="this.parentElement.classList.add('about__img--fallback')" />
+          </div>
+          <div class="about__badge">
+            <span class="about__badge-year">2017</span>
+            <span class="about__badge-label">Berdiri Resmi</span>
+          </div>
+        </div>
+        <div class="about__text reveal-right">
+          <p class="section-eyebrow">Tentang Kami</p>
+          <h2 class="section-title">Dari Jombang, <em>Untuk Indonesia Raya</em></h2>
+          <p class="about__body">PT Sehat Tentrem Jaya Lestari <em>resmi berdiri pada 2017</em>, digagas sejak 2013 oleh <em>M. Subchi Azal Tsani (Mas Bechi)</em> — putra Kiai Moch. Mukhtar Mu'thi, Mursyid Thoriqoh Shiddiqiyyah. Berawal dari keprihatinan terhadap kondisi ekonomi umat, beliau merintis usaha dari lingkungan Pesantren Majma'al Bachroin Chubbul Wathon Minal Iman Shiddiqiyyah, Jombang.</p>
+          <p class="about__body">Lebih dari sekadar industri rokok, ST adalah <em>gerakan dakwah</em>: dakwah keimanan kepada Allah, dakwah kemanusiaan untuk sesama, dan dakwah kealaman untuk bumi Nusantara. Setiap batang kretek yang terracik adalah wujud nyata dari semangat <em>"Untuk Indonesia Raya"</em> — membangun kemandirian ekonomi umat dari tanah Jawa Timur.</p>
+          <p class="about__body">Kini ST telah berkembang menjadi ekosistem bisnis: <em>Kopi ST</em>, <em>Susu Tombo ST</em>, <em>ST Beverage</em>, <em>Klambi ST</em>, <em>Mumtaaj Gallery</em>, <em>Mumtaaj Scarf</em>, dan <em>Musik Sehat Tentrem (MST)</em> — semuanya bergerak dalam satu nafas besar: Indonesia Raya.</p>
+          <div class="about__stats">
+            <div class="stat-item">
+              <span class="stat-num">10</span>
+              <span class="stat-label">Varian Produk</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">500+</span>
+              <span class="stat-label">Karyawan</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">34</span>
+              <span class="stat-label">Provinsi Distribusi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY BANNER -->
+    <section class="philosophy">
+      <div class="philosophy__bg"></div>
+      <div class="container philosophy__inner">
+        <blockquote class="philosophy__quote reveal-up">
+          <span class="philosophy__open-q">"</span>
+          Sehat Tentrem — Untuk Indonesia Raya.<br/><em>Iman, Manusia, dan Alam dalam setiap racikan.</em>
+          <span class="philosophy__close-q">"</span>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="products section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Koleksi Produk</p>
+          <h2 class="section-title">Sigaret Kretek Tangan <em>Pilihan Nusantara</em></h2>
+          <p class="section-desc">Diracik dari tembakau pilihan, cengkih, jinten, dan rempah-rempah Nusantara — setiap varian ST adalah karya yang lahir dari hati, untuk Indonesia Raya.</p>
+          <p class="section-note">Harga bervariasi per wilayah · <a href="https://info-st.com/location" target="_blank" rel="noopener">Cari toko terdekat →</a></p>
+        </div>
+        <div class="products__filter" id="products-filter" role="tablist" aria-label="Filter kategori produk">
+          <button class="filter-chip is-active" data-filter="all" role="tab" aria-selected="true">Semua</button>
+          <button class="filter-chip" data-filter="premium" role="tab">Premium</button>
+          <button class="filter-chip" data-filter="seimbang" role="tab">Seimbang</button>
+          <button class="filter-chip" data-filter="antioksidan" role="tab">Antioksidan</button>
+          <button class="filter-chip" data-filter="antibodi" role="tab">Antibodi</button>
+          <button class="filter-chip" data-filter="slim" role="tab">Slim</button>
+          <button class="filter-chip" data-filter="putih" role="tab">Putih</button>
+          <button class="filter-chip" data-filter="patriotik" role="tab">Patriotik</button>
+        </div>
+        <div class="products__grid" id="products-grid">
+          <div class="product-card reveal-up" data-delay="0" data-category="seimbang">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Matursuwun.jpg" alt="Matur Suwon SM" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Matur Suwon SM</h3>
+              <p class="product-card__desc">Formulasi Spesial Mix dari tembakau dan rempah-rempah pilihan Nusantara. Rasa gurih, tebal, dan tetap halus. Nama berarti "Terima Kasih" — wujud syukur ST untuk Rakyat Indonesia.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Spesial Mix</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="50" data-category="antioksidan">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Raos%20Ngeten%20Puron.jpg" alt="Raos Ngeten Puron" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Raos Ngeten Puron</h3>
+              <p class="product-card__desc">Kretek dengan rasa paling tebal dan kuat dari seluruh varian ST. Tembakau diformulasikan dengan rempah-rempah antioksidan pilihan — kekuatan rasa khas Nusantara dalam setiap hisapan.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Antioksidan</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="100" data-category="seimbang">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Raos%20Ngeten%20Mawon.jpg" alt="Raos Ngeten Mawon" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Raos Ngeten Mawon</h3>
+              <p class="product-card__desc">Rasa seimbang antara kuat dan halus. Tembakau medium dengan campuran rempah mirip varian premium — pintu masuk menuju cita rasa premium ST dengan harga lebih terjangkau.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Seimbang</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="150" data-category="patriotik">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Merahputih.jpg" alt="Merah Putih" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Merah Putih</h3>
+              <p class="product-card__desc">Persembahan untuk mensyukuri kemerdekaan dan berdirinya NKRI. Rasa halus dan gurih, formulasi rempah-rempah antibakteri. Kini hadir dengan kemasan baru dan cita rasa lebih stabil.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Patriotik</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="200" data-category="antibodi">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Blokosutho.jpg" alt="Alastu Blokosutho" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Alastu Blokosutho</h3>
+              <p class="product-card__desc">"Terus terang, apa adanya." Tembakau kualitas tinggi dengan formulasi rempah khusus mengandung antibodi — meningkatkan daya tahan tubuh dan memerangi bakteri serta virus penyebab penyakit.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Antibodi</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="250" data-category="slim">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Getzemani.jpg" alt="Getszemani" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Getszemani</h3>
+              <p class="product-card__desc">Satu-satunya kretek ST bersiluet ramping (slim). Halus, ringan, namun tetap autentik. Terinspirasi dari Taman Gethsemane di kaki Bukit Zaitun. Diformulasikan dengan rempah kaya manfaat.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Slim</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="300" data-category="premium">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Raos%20Paling%20Eco.jpg" alt="Raos Paling Eco" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Raos Paling Eco</h3>
+              <p class="product-card__desc">"Rasa Paling Enak." Perpaduan tembakau, cengkeh, rempah-rempah, dan madu murni berkualitas tinggi. Nikmat, sedap, manis, halus, dan harum — ekspresi cita rasa puncak kretek Indonesia.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Premium</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="350" data-category="putih">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Cafetin.jpg" alt="Alastu Caffetin" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Alastu Caffetin</h3>
+              <p class="product-card__desc">Kretek putih tanpa filter. Singkatan dari Caffeine dan Nicotine. Formulasi rempah berkualitas tinggi menghasilkan rasa ringan saat dihisap, namun tetap gurih dan nikmat.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT Putih · Caffeine</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="400" data-category="premium">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/RPE%20spesial%20oxy.jpg" alt="Raos Paling Eco Spesial Oxy" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">RPE Spesial Oxy</h3>
+              <p class="product-card__desc">Varian unggulan Raos Paling Eco dengan teknologi Oxytron — boost oxygen menghadirkan hentakan rasa lebih tajam, hisapan tetap smooth dan cool. Puncak inovasi tradisi kretek Indonesia.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Oxytron</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal-up" data-delay="450" data-category="premium">
+            <div class="product-card__img-wrap">
+              <img src="assets/images/products/Syifa.jpg" alt="Syifaa" onerror="this.parentElement.classList.add('product-card__img--fallback')" />
+              <div class="product-card__overlay"><a href="https://info-st.com/location" target="_blank" rel="noopener" class="btn btn--gold btn--sm">Cari Toko</a></div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Syifaa</h3>
+              <p class="product-card__desc">"Obat" dalam bahasa Arab. Varian paling premium — tembakau kualitas tertinggi, formulasi rempah paling intens, dilengkapi madu murni terbaik. Ukuran lebih panjang, khasiat lebih kaya.</p>
+              <div class="product-card__footer">
+                <span class="product-card__tag">SKT · Ultra Premium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND AMBASSADOR SECTION -->
+    <section id="ambassador" class="ambassador section section--dark">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Brand Ambassador</p>
+          <h2 class="section-title">Wajah <em>Sehat Tentrem</em></h2>
+          <p class="section-desc">Mereka yang mewakili semangat "Untuk Indonesia Raya" — jiwa-jiwa autentik yang menginspirasi jutaan insan Indonesia.</p>
+        </div>
+        <div class="ambassador__grid">
+          <a class="amb-card reveal-up" data-delay="0"
+             href="https://www.instagram.com/indraqadarsih/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Lihat Instagram Indra Q (@indraqadarsih)">
+            <div class="amb-card__img">
+              <img src="assets/images/brand/ambassador-indra.jpg" alt="Indra Q – Brand Ambassador ST" />
+              <div class="amb-card__overlay" aria-hidden="true">
+                <svg class="amb-card__ig-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <span class="amb-card__ig-label">Lihat Instagram</span>
+                <span class="amb-card__ig-handle">@indraqadarsih</span>
+              </div>
+            </div>
+            <div class="amb-card__info">
+              <h3 class="amb-card__name">Indra Q</h3>
+              <p class="amb-card__role">Brand Ambassador</p>
+              <span class="amb-card__ig-chip" aria-hidden="true">
+                <svg class="amb-card__ig-icon-mini" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                @indraqadarsih
+              </span>
+            </div>
+          </a>
+          <a class="amb-card reveal-up" data-delay="150"
+             href="https://www.instagram.com/indrobass/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Lihat Instagram Indro H (@indrobass)">
+            <div class="amb-card__img">
+              <img src="assets/images/brand/ambassador-indro.jpg" alt="Indro H – Brand Ambassador ST" />
+              <div class="amb-card__overlay" aria-hidden="true">
+                <svg class="amb-card__ig-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <span class="amb-card__ig-label">Lihat Instagram</span>
+                <span class="amb-card__ig-handle">@indrobass</span>
+              </div>
+            </div>
+            <div class="amb-card__info">
+              <h3 class="amb-card__name">Indro H</h3>
+              <p class="amb-card__role">Brand Ambassador</p>
+              <span class="amb-card__ig-chip" aria-hidden="true">
+                <svg class="amb-card__ig-icon-mini" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                @indrobass
+              </span>
+            </div>
+          </a>
+          <a class="amb-card reveal-up" data-delay="300"
+             href="https://www.instagram.com/payburman/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Lihat Instagram Pay (@payburman)">
+            <div class="amb-card__img">
+              <img src="assets/images/brand/ambassador-pay.png" alt="Pay – Brand Ambassador ST" />
+              <div class="amb-card__overlay" aria-hidden="true">
+                <svg class="amb-card__ig-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <span class="amb-card__ig-label">Lihat Instagram</span>
+                <span class="amb-card__ig-handle">@payburman</span>
+              </div>
+            </div>
+            <div class="amb-card__info">
+              <h3 class="amb-card__name">Pay</h3>
+              <p class="amb-card__role">Brand Ambassador</p>
+              <span class="amb-card__ig-chip" aria-hidden="true">
+                <svg class="amb-card__ig-icon-mini" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                @payburman
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSPIRATION SECTION -->
+    <section id="inspirasi" class="inspirasi section section--dark">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Inspirasi</p>
+          <h2 class="section-title">Momen Tentrem <em>Setiap Hari</em></h2>
+          <p class="section-desc">Temukan inspirasi untuk meresapi ketenangan dalam keseharian Anda.</p>
+        </div>
+        <div class="inspirasi__grid" id="inspirasi-grid">
+          <article class="insp-card reveal-up" data-delay="0">
+            <div class="insp-card__img">
+              <img src="assets/images/inspiration/insp-musik.jpg" alt="Musik & Budaya" onerror="this.parentElement.classList.add('insp-card__img--fallback-1')" />
+            </div>
+            <div class="insp-card__body">
+              <span class="insp-card__cat">Budaya</span>
+              <h3 class="insp-card__title">Musik Tradisi yang Menyejukkan Jiwa</h3>
+              <p class="insp-card__text">Dari gamelan hingga keroncong, musik Nusantara adalah obat jiwa yang paling ampuh.</p>
+              <span class="insp-card__soon">Segera Hadir</span>
+            </div>
+          </article>
+          <article class="insp-card reveal-up" data-delay="100">
+            <div class="insp-card__img">
+              <img src="assets/images/inspiration/insp-alam.jpg" alt="Alam & Ketenangan" onerror="this.parentElement.classList.add('insp-card__img--fallback-2')" />
+            </div>
+            <div class="insp-card__body">
+              <span class="insp-card__cat">Alam</span>
+              <h3 class="insp-card__title">Seni Menemukan Damai di Tengah Keramaian</h3>
+              <p class="insp-card__text">Ketenangan bukan soal tempat, melainkan cara pandang kita terhadap setiap momen.</p>
+              <span class="insp-card__soon">Segera Hadir</span>
+            </div>
+          </article>
+          <article class="insp-card reveal-up" data-delay="200">
+            <div class="insp-card__img">
+              <img src="assets/images/inspiration/insp-kopi.jpg" alt="Kopi & Santai" onerror="this.parentElement.classList.add('insp-card__img--fallback-3')" />
+            </div>
+            <div class="insp-card__body">
+              <span class="insp-card__cat">Gaya Hidup</span>
+              <h3 class="insp-card__title">Kopi ST, Momen Terbaik Memulai Hari</h3>
+              <p class="insp-card__text">Ada yang istimewa saat pagi hari — secangkir Kopi ST, harmoni cita rasa Nusantara untuk semangat Indonesia Raya.</p>
+              <span class="insp-card__soon">Segera Hadir</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERITA ST SECTION -->
+    <section id="cerita" class="cerita section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Cerita ST</p>
+          <h2 class="section-title">Perjalanan <em>Menemani Nusantara</em></h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline__item reveal-left">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__year">2013</span>
+              <h3 class="timeline__title">Awal Mula Peramuan Resep</h3>
+              <p class="timeline__desc">Di lingkungan Pesantren Shiddiqiyyah, Jombang — M. Subchi Azal Tsani (Mas Bechi) mulai merintis cita rasa Sehat Tentrem. Empat tahun proses pencarian: memilih tembakau, menakar cengkih, dan meramu rempah Nusantara. Sebuah perjalanan keprihatinan yang berbuah resep, dengan satu nafas: <em>Untuk Indonesia Raya</em>.</p>
+            </div>
+          </div>
+          <div class="timeline__item reveal-right">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__year">2017</span>
+              <h3 class="timeline__title">Berdiri Resmi PT Sehat Tentrem Jaya Lestari</h3>
+              <p class="timeline__desc">Setelah resep matang dan formula stabil, ST resmi berdiri sebagai PT Sehat Tentrem Jaya Lestari. Bisnis rumahan dengan kurang dari 20 karyawan menjadi cikal-bakal industri Sigaret Kretek Tangan (SKT) yang membawa semangat dakwah ekonomi umat.</p>
+            </div>
+          </div>
+          <div class="timeline__item reveal-left">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__year">2019</span>
+              <h3 class="timeline__title">Lahirnya Ekosistem ST Group</h3>
+              <p class="timeline__desc">ST berkembang melampaui kretek — lahirnya Kopi ST, Susu Tombo ST, Klambi ST, Mumtaaj Gallery, dan Musik Sehat Tentrem (MST) sebagai satu ekosistem bisnis terintegrasi yang saling menguatkan.</p>
+            </div>
+          </div>
+          <div class="timeline__item reveal-right">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__year">2024</span>
+              <h3 class="timeline__title">ST untuk Seluruh Nusantara</h3>
+              <p class="timeline__desc">Ratusan karyawan, jaringan agen di 34 provinsi, dan program CSR aktif — Sehat Tentrem tumbuh sebagai perusahaan yang memberi manfaat nyata bagi Nusa dan Bangsa.</p>
+            </div>
+          </div>
+          <div class="timeline__item reveal-left">
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <span class="timeline__year">2026</span>
+              <h3 class="timeline__title">Babak Baru — Tumbuh Bersama Indonesia</h3>
+              <p class="timeline__desc">Memasuki tahun ke-9, ST menapaki babak baru: penguatan ekosistem distribusi, kolaborasi dengan mitra di seluruh Nusantara, dan percepatan pertumbuhan. Dari Jombang ke seluruh negeri — semangat <em>"Untuk Indonesia Raya"</em> mengalir dalam setiap karya.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSR / PROGRAM SOSIAL SECTION -->
+    <section id="csr" class="csr section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Tanggung Jawab Sosial</p>
+          <h2 class="section-title">Nyata <em>Untuk Sesama</em></h2>
+          <p class="section-desc">"Untuk Indonesia Raya" bukan sekadar slogan — ia terwujud dalam aksi nyata yang menyentuh kehidupan masyarakat setiap harinya.</p>
+        </div>
+        <div class="csr__grid">
+
+          <!-- CSR Card 1 -->
+          <div class="csr-card csr-card--photo reveal-up" data-delay="0">
+            <div class="csr-card__img-wrap">
+              <img src="assets/images/inspiration/csr-rumah.jpg" alt="Rumah Syukur Layak Huni" onerror="this.closest('.csr-card__img-wrap').classList.add('csr-card__img--fallback-1')" />
+              <div class="csr-card__img-overlay"></div>
+            </div>
+            <div class="csr-card__body">
+              <span class="csr-card__number">01</span>
+              <h3 class="csr-card__title">Rumah Syukur Layak Huni</h3>
+              <p class="csr-card__desc">Program pembangunan Rumah Syukur Layak Huni Shiddiqiyyah — memastikan saudara-saudara kita memiliki tempat bernaung yang layak dan bermartabat.</p>
+              <span class="csr-card__tag">Infrastruktur Sosial</span>
+            </div>
+          </div>
+
+          <!-- CSR Card 2 -->
+          <div class="csr-card csr-card--photo csr-card--center reveal-up" data-delay="150">
+            <div class="csr-card__img-wrap">
+              <img src="assets/images/inspiration/csr-sosial.jpg" alt="Santunan & Pengobatan Gratis" onerror="this.closest('.csr-card__img-wrap').classList.add('csr-card__img--fallback-2')" />
+              <div class="csr-card__img-overlay"></div>
+            </div>
+            <div class="csr-card__body">
+              <span class="csr-card__number">02</span>
+              <h3 class="csr-card__title">Santunan &amp; Pengobatan Gratis</h3>
+              <p class="csr-card__desc">Penyaluran sembako, santunan anak yatim dan dhuafa, serta pengobatan gratis dan pasar murah — tanpa memandang suku maupun agama.</p>
+              <span class="csr-card__tag">Kemanusiaan &amp; Kesehatan</span>
+            </div>
+          </div>
+
+          <!-- CSR Card 3 -->
+          <div class="csr-card csr-card--photo reveal-up" data-delay="300">
+            <div class="csr-card__img-wrap">
+              <img src="assets/images/inspiration/csr-pesantren.jpg" alt="Pemberdayaan Pesantren" onerror="this.closest('.csr-card__img-wrap').classList.add('csr-card__img--fallback-3')" />
+              <div class="csr-card__img-overlay"></div>
+            </div>
+            <div class="csr-card__body">
+              <span class="csr-card__number">03</span>
+              <h3 class="csr-card__title">Pemberdayaan Masyarakat Pesantren</h3>
+              <p class="csr-card__desc">Menumbuhkan kemandirian ekonomi umat melalui ekosistem bisnis yang berpusat di lingkungan Pesantren Shiddiqiyyah, Jombang.</p>
+              <span class="csr-card__tag">Ekonomi Umat</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK SECTION -->
+    <section id="kontak" class="kontak section section--dark">
+      <div class="container kontak__grid">
+        <div class="kontak__info reveal-left">
+          <p class="section-eyebrow">Hubungi Kami</p>
+          <h2 class="section-title">Temukan ST <em>di Dekat Anda</em></h2>
+          <p class="kontak__desc">Untuk informasi produk, distribusi, atau pertanyaan lainnya, silakan hubungi kami melalui kontak di bawah ini.</p>
+          <ul class="kontak__list">
+            <li><span class="kontak__icon">📍</span><span>Jl. Raya Kabuh–Tapen, Desa Kauman, Kec. Kabuh, Kab. Jombang — Jawa Timur, Indonesia Raya</span></li>
+            <li><span class="kontak__icon">📞</span><span><a href="tel:+6281134412170" style="color:inherit;text-decoration:none">+62 811 344 1217</a></span></li>
+            <li><span class="kontak__icon">🌐</span><span><a href="https://info-st.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">info-st.com</a></span></li>
+            <li><span class="kontak__icon">🕐</span><span>Senin–Jumat, 08.00–17.00 WIB</span></li>
+          </ul>
+          <div class="kontak__socials">
+            <a href="https://www.instagram.com/sehattentremcenter" target="_blank" rel="noopener" class="social-link" aria-label="Instagram ST">IG</a>
+            <a href="https://www.facebook.com/SehatTentremCenter/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook ST">FB</a>
+            <a href="https://www.youtube.com/@SehatTentremOfficial" target="_blank" rel="noopener" class="social-link" aria-label="YouTube ST">YT</a>
+            <a href="https://x.com/ST_sehattentrem" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter ST">𝕏</a>
+          </div>
+        </div>
+        <div class="kontak__form reveal-right">
+          <form class="contact-form" id="contact-form" novalidate>
+            <p class="form-intro">Pesan akan dikirim langsung ke WhatsApp resmi ST.</p>
+            <div class="form-group">
+              <label for="nama">Nama Lengkap</label>
+              <input type="text" id="nama" name="nama" placeholder="Nama Anda" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="form-optional">(opsional)</span></label>
+              <input type="email" id="email" name="email" placeholder="email@anda.com" />
+            </div>
+            <div class="form-group">
+              <label for="pesan">Pesan</label>
+              <textarea id="pesan" name="pesan" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--gold btn--full">
+              <span class="btn__icon" aria-hidden="true">💬</span> Kirim via WhatsApp
+            </button>
+            <p class="form-note" id="form-note"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <img src="assets/images/brand/logo-st.png" alt="ST Sehat Tentrem" class="footer__logo-img" />
+          <p class="footer__tagline">Sehat Tentrem</p>
+          <p class="footer__since">Est. 2017 · Jombang, Jawa Timur</p>
+        </div>
+        <div class="footer__links">
+          <h4>Navigasi</h4>
+          <a href="#hero">Beranda</a>
+          <a href="#about">Tentang Kami</a>
+          <a href="#products">Produk</a>
+          <a href="#inspirasi">Inspirasi</a>
+          <a href="#cerita">Cerita ST</a>
+          <a href="#kontak">Kontak</a>
+        </div>
+        <div class="footer__links">
+          <h4>Produk</h4>
+          <a href="#products">Matur Suwon</a>
+          <a href="#products">Getszemani</a>
+          <a href="#products">Blokosutho</a>
+          <a href="#products">RNP &amp; RNM</a>
+          <a href="#products">Merah Putih</a>
+        </div>
+        <div class="footer__legal-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Kebijakan Privasi</a>
+          <a href="terms.html">Syarat &amp; Ketentuan</a>
+        </div>
+      </div>
+      <div class="footer__bottom container">
+        <p class="footer__copy">© 2026 PT Sehat Tentrem Jaya Lestari. Hak Cipta Dilindungi.</p>
+        <p class="footer__warning">⚠️ MEROKOK MEMBUNUH. Iklan ini hanya untuk perokok dewasa usia 18 tahun ke atas.</p>
+      </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" class="back-to-top" aria-label="Kembali ke atas">↑</button>
+
+  </div><!-- /main-site -->
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
