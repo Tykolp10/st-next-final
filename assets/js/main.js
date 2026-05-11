@@ -148,7 +148,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===== CONTACT FORM → WHATSAPP =====
 const form = document.getElementById('contact-form');
 const formNote = document.getElementById('form-note');
-const WA_NUMBER = '6281134412170'; // Nomor WA resmi ST (tanpa +)
+const WA_NUMBER = '6281335730002'; // Nomor WA resmi ST (tanpa +)
 if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
