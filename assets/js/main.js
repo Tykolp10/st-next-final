@@ -109,18 +109,28 @@ startSlider();
 
 // ===== SCROLL REVEAL =====
 const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-function checkReveal() {
-  revealEls.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    const delay = el.dataset.delay ? parseInt(el.dataset.delay) : 0;
-    if (rect.top < window.innerHeight * 0.88) {
-      setTimeout(() => el.classList.add('visible'), delay);
+const revealOptions = {
+  root: null,
+  rootMargin: '0px 0px -15% 0px',
+  threshold: 0
+};
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
+    if (entry.isIntersecting) {
+      if (delay > 0) {
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+      } else {
+        entry.target.classList.add('visible');
+      }
+    } else {
+      // Menghapus class agar bisa muncul lagi ketika di-scroll kembali
+      entry.target.classList.remove('visible');
     }
   });
-}
-window.addEventListener('scroll', checkReveal, { passive: true });
-window.addEventListener('resize', checkReveal, { passive: true });
-setTimeout(checkReveal, 300);
+}, revealOptions);
+
+revealEls.forEach(el => revealObserver.observe(el));
 
 // ===== SMOOTH NAV SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
