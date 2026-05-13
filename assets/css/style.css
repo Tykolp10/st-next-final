@@ -199,6 +199,66 @@ a { text-decoration: none; color: inherit; }
 .navbar__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
 .navbar__hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: var(--trans); }
 
+@media (min-width: 1024px) {
+  /* ===== DESKTOP SIDEBAR LAYOUT (Anime.js style) ===== */
+  .navbar {
+    width: 280px;
+    height: calc(100vh - var(--sacred-h));
+    top: var(--sacred-h);
+    left: 0;
+    bottom: 0;
+    right: auto;
+    background: #0d0a08;
+    border-right: 1px solid rgba(200,169,110,0.15);
+    border-bottom: none;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+  .navbar.scrolled {
+    background: #0d0a08;
+    padding: 60px 40px;
+    backdrop-filter: none;
+    border-bottom: none;
+  }
+  .navbar__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .navbar__logo {
+    margin-bottom: 60px;
+  }
+  .navbar__nav {
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+  .nav-link {
+    display: block;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+  }
+  .nav-link::after { display: none; }
+  .nav-link:hover { color: var(--gold); transform: translateX(8px); }
+  .nav-link.is-active {
+    color: var(--gold);
+  }
+  
+  #main-site {
+    margin-left: 280px;
+  }
+  .hero {
+    height: calc(100vh - var(--sacred-h));
+    min-height: 600px;
+  }
+}
+
 /* ===== HERO ===== */
 .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; padding-top: 0; }
 .hero__slider { position: absolute; inset: 0; }
@@ -757,7 +817,8 @@ a { text-decoration: none; color: inherit; }
   .hero__scroll-hint { display: none; }
   /* Sacred bar lebih kecil di mobile supaya hemat ruang */
   :root { --sacred-h: 32px; }
-  .sacred-bar__text { font-size: 0.62rem; letter-spacing: 0.22em; }
+  .sacred-bar__text { font-size: 0.55rem; letter-spacing: 0.15em; line-height: 1.2; width: 100%; white-space: normal; text-align: center; }
+  .hero__slide-caption { right: 24px; left: 24px; bottom: 32px; font-size: 0.55rem; text-align: right; white-space: normal; word-wrap: break-word; }
 }
 
 /* ===== ACTIVE NAV (class-based, override inline) ===== */
@@ -1019,3 +1080,21 @@ textarea:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
+
+/* ===== LOCATOR MODAL ===== */
+.locator-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+.locator-modal.is-open { opacity: 1; visibility: visible; }
+.locator-modal__bg { position: absolute; inset: 0; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(16px); }
+.locator-modal__content { position: relative; z-index: 1; width: 90%; max-width: 600px; background: linear-gradient(145deg, var(--dark-3) 0%, var(--dark-2) 100%); border: 1px solid var(--border); border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,0.8), 0 0 40px rgba(200,169,110,0.15); transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.locator-modal.is-open .locator-modal__content { transform: translateY(0); }
+.locator-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+.locator-close:hover { color: var(--gold); }
+.locator-modal__title { font-family: 'Roboto', sans-serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 12px; }
+.locator-modal__desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; }
+.locator-search { position: relative; margin-bottom: 24px; }
+.locator-search input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border); padding: 16px 20px; font-size: 1.05rem; color: var(--cream); border-radius: 8px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+.locator-search input:focus { border-color: var(--gold); box-shadow: 0 0 12px rgba(200,169,110,0.3); }
+.locator-suggestions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 32px; }
+.city-chip { background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.2); color: var(--gold); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; }
+.city-chip:hover { background: var(--gold); color: #111; }
+.locator-submit { width: 100%; }

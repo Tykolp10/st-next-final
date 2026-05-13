@@ -4,9 +4,38 @@ const mainSite = document.getElementById('main-site');
 const ageYes = document.getElementById('age-yes');
 const ageNo = document.getElementById('age-no');
 
+function playEpicHeroEntrance() {
+  if (typeof anime === 'undefined') return;
+  anime({
+    targets: '.hero__title-img',
+    scale: [0.85, 1],
+    opacity: [0, 1],
+    duration: 1800,
+    easing: 'easeOutElastic(1, .6)',
+    delay: 200
+  });
+  anime({
+    targets: ['.hero__eyebrow', '.hero__subtitle', '.hero__content .btn', '.hero__content a'],
+    translateY: [20, 0],
+    opacity: [0, 1],
+    duration: 1200,
+    delay: anime.stagger(150, {start: 500}),
+    easing: 'easeOutExpo'
+  });
+  anime({
+    targets: ['.sacred-bar', '.navbar'],
+    translateY: [-50, 0],
+    opacity: [0, 1],
+    duration: 1200,
+    delay: anime.stagger(100),
+    easing: 'easeOutExpo'
+  });
+}
+
 if (sessionStorage.getItem('st-age-verified')) {
   ageGate.style.display = 'none';
   mainSite.classList.remove('hidden');
+  document.addEventListener('DOMContentLoaded', playEpicHeroEntrance);
 } else {
   ageYes.addEventListener('click', () => {
     sessionStorage.setItem('st-age-verified', '1');
@@ -15,7 +44,11 @@ if (sessionStorage.getItem('st-age-verified')) {
     setTimeout(() => { ageGate.style.display = 'none'; }, 800);
     mainSite.classList.remove('hidden');
     mainSite.style.opacity = '0';
-    setTimeout(() => { mainSite.style.transition = 'opacity 0.6s'; mainSite.style.opacity = '1'; }, 50);
+    setTimeout(() => { 
+      mainSite.style.transition = 'opacity 0.6s'; 
+      mainSite.style.opacity = '1'; 
+      playEpicHeroEntrance();
+    }, 50);
   });
   ageNo.addEventListener('click', () => {
     // Lebih lembut: tampilkan pesan terima kasih, jangan langsung redirect
@@ -109,23 +142,49 @@ startSlider();
 
 // ===== SCROLL REVEAL =====
 const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+// Set initial states so elements don't flicker before observer fires
+revealEls.forEach(el => {
+  el.style.opacity = 0;
+  if (el.classList.contains('reveal-up')) el.style.transform = 'translateY(50px)';
+  if (el.classList.contains('reveal-left')) el.style.transform = 'translateX(-50px)';
+  if (el.classList.contains('reveal-right')) el.style.transform = 'translateX(50px)';
+});
+
 const revealOptions = {
   root: null,
-  rootMargin: '0px 0px -15% 0px',
+  rootMargin: '0px 0px -10% 0px',
   threshold: 0
 };
-const revealObserver = new IntersectionObserver((entries) => {
+
+const revealObserver = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
-    const delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
     if (entry.isIntersecting) {
-      if (delay > 0) {
-        setTimeout(() => entry.target.classList.add('visible'), delay);
+      const el = entry.target;
+      const delay = el.dataset.delay ? parseInt(el.dataset.delay) : 0;
+      
+      let translateX = 0;
+      let translateY = 0;
+      if (el.classList.contains('reveal-up')) translateY = [50, 0];
+      if (el.classList.contains('reveal-left')) translateX = [-50, 0];
+      if (el.classList.contains('reveal-right')) translateX = [50, 0];
+      
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: el,
+          opacity: [0, 1],
+          translateX: translateX || 0,
+          translateY: translateY || 0,
+          duration: 1200,
+          delay: delay,
+          easing: 'easeOutElastic(1, .8)'
+        });
       } else {
-        entry.target.classList.add('visible');
+        el.style.transition = 'all 1s ease';
+        el.style.opacity = 1;
+        el.style.transform = 'translate(0,0)';
       }
-    } else {
-      // Menghapus class agar bisa muncul lagi ketika di-scroll kembali
-      entry.target.classList.remove('visible');
+      
+      obs.unobserve(el);
     }
   });
 }, revealOptions);
@@ -148,26 +207,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===== CONTACT FORM → WHATSAPP =====
 const form = document.getElementById('contact-form');
 const formNote = document.getElementById('form-note');
-const WA_NUMBER = '6281335730002'; // Nomor WA resmi ST (tanpa +)
 if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const nama  = form.nama.value.trim();
+    const nama = form.nama.value.trim();
     const email = form.email.value.trim();
+    const kategori = form.kategori.value;
     const pesan = form.pesan.value.trim();
-    if (!nama || !pesan) {
-      formNote.textContent = '⚠ Mohon isi Nama dan Pesan terlebih dahulu.';
+    
+    if (!nama || !pesan || !kategori) {
+      formNote.textContent = '⚠ Mohon isi Kategori, Nama, dan Pesan.';
       formNote.style.color = '#cc8a2a';
       return;
     }
+
+    const templates = {
+      stok: `Halo ST, saya ingin tanya stok produk...`,
+      agen: `Halo ST, saya tertarik menjadi agen/mitra distribusi...`,
+      kerjasama: `Halo ST, kami ingin berkolaborasi...`,
+      media: `Halo ST, saya ingin menanyakan terkait media...`,
+      lainnya: `Halo ST, saya ingin bertanya tentang...`
+    };
+
     const text =
       `*Pesan dari Website ST Sehat Tentrem*%0A%0A` +
+      `*Kategori:* ${kategori}%0A` +
       `*Nama:* ${encodeURIComponent(nama)}%0A` +
       (email ? `*Email:* ${encodeURIComponent(email)}%0A` : '') +
-      `*Pesan:*%0A${encodeURIComponent(pesan)}`;
-    const waUrl = `https://wa.me/${WA_NUMBER}?text=${text}`;
+      `*Pesan:*%0A${encodeURIComponent(templates[kategori] || '')} %0A${encodeURIComponent(pesan)}`;
+      
+    // ST_CONFIG loaded from config.js
+    const waUrl = typeof ST_CONFIG !== 'undefined' ? ST_CONFIG.buildWhatsappUrl(text) : `https://wa.me/6281335730002?text=${text}`;
     window.open(waUrl, '_blank', 'noopener');
-    formNote.textContent = '✓ Membuka WhatsApp... Lanjutkan kirim pesan dari aplikasi WA Anda.';
+    formNote.textContent = '✓ Membuka WhatsApp...';
     formNote.style.color = 'var(--gold)';
   });
 }
@@ -211,4 +283,208 @@ if (backTop) {
   backTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+}
+
+// ===== STORE LOCATOR PROTOTYPE LOGIC =====
+if (typeof ST_CONFIG !== 'undefined') {
+  // Hero CTA Button
+  const heroCtaStore = document.getElementById('hero-cta-store');
+  if (heroCtaStore) {
+    heroCtaStore.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = ST_CONFIG.buildStoreLocatorUrl({
+        utm_campaign: 'hero-cta',
+        utm_content: 'primary-button'
+      });
+    });
+  }
+
+  // Product Card CTAs
+  document.querySelectorAll('.cta-store-locator').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const product = link.dataset.product;
+      const ctaType = link.dataset.ctaType;
+      window.location.href = ST_CONFIG.buildStoreLocatorUrl({
+        utm_campaign: ctaType,
+        utm_content: product,
+        product: product
+      });
+    });
+  });
+
+  // Sticky Mobile CTA
+  const stickyCtaMobile = document.getElementById('sticky-cta-mobile');
+  const stickyBtn = document.getElementById('sticky-btn');
+  if (stickyCtaMobile && stickyBtn) {
+    stickyBtn.addEventListener('click', () => {
+      window.location.href = ST_CONFIG.buildStoreLocatorUrl({
+        utm_campaign: 'sticky-mobile',
+        utm_content: 'persistent-cta'
+      });
+    });
+
+    // Hide when hero is in view
+    const heroObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        stickyCtaMobile.classList.remove('is-visible');
+      } else {
+        stickyCtaMobile.classList.add('is-visible');
+      }
+    }, { rootMargin: '-10% 0px 0px 0px', threshold: 0 });
+    if (heroSection) heroObserver.observe(heroSection);
+  }
+
+  // Hero WhatsApp Fallback
+  const heroWaFallback = document.getElementById('hero-wa-fallback');
+  if (heroWaFallback) {
+    heroWaFallback.addEventListener('click', (e) => {
+      e.preventDefault();
+      const city = document.getElementById('hero-city-input')?.value || '';
+      const message = city
+        ? `Halo ST, saya di ${city}. Bisa info di mana saya bisa beli ST di sekitar sini?`
+        : `Halo ST, saya ingin tanya di mana toko ST terdekat dari lokasi saya.`;
+      window.location.href = ST_CONFIG.buildWhatsappUrl(message);
+    });
+  }
+}
+
+// ===== FAQ ACCORDION =====
+document.querySelectorAll('.faq__question').forEach(button => {
+  button.addEventListener('click', () => {
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', !isExpanded);
+    const answer = button.nextElementSibling;
+    if (!isExpanded) {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    } else {
+      answer.style.maxHeight = null;
+    }
+  });
+});
+
+// ===== MOBILE TIMELINE ACCORDION =====
+document.querySelectorAll('.timeline__title').forEach(title => {
+  title.addEventListener('click', () => {
+    if (window.innerWidth <= 640) {
+      const item = title.closest('.timeline__item');
+      item.classList.toggle('is-open');
+    }
+  });
+});
+
+// ===== ANIME.JS ANIMATIONS =====
+// ===== ANIME.JS ANIMATIONS =====
+function initAnimations() {
+  if (typeof anime === 'undefined') return;
+  // Hero Animation
+  anime({
+    targets: '.hero__title--task',
+    translateY: [20, 0],
+    opacity: [0, 1],
+    duration: 1200,
+    easing: 'easeOutCubic',
+    delay: 300
+  });
+
+  // Counter Animation using Intersection Observer
+  const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      document.querySelectorAll('.stat-num').forEach(el => {
+        const value = parseInt(el.innerText.replace(/[^0-9]/g, ''));
+        const isPlus = el.innerText.includes('+');
+        anime({
+          targets: el,
+          innerHTML: [0, value],
+          round: 1,
+          easing: 'easeOutExpo',
+          duration: 2000,
+          update: function(a) {
+            el.innerHTML = a.animations[0].currentValue + (isPlus ? '+' : '');
+          }
+        });
+      });
+      statsObserver.disconnect();
+    }
+  });
+  const statsContainer = document.querySelector('.about__stats');
+  if (statsContainer) statsObserver.observe(statsContainer);
+}
+
+window.addEventListener('anime-ready', initAnimations);
+
+// ===== EPIC COUNTER (Anime.js) =====
+const countUpEls = document.querySelectorAll('.count-up');
+const counterObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      if (el.dataset.counted) return;
+      el.dataset.counted = 'true';
+      
+      const text = el.textContent;
+      const numMatches = text.match(/(\d+)/);
+      if (!numMatches) return;
+      const targetNum = parseInt(numMatches[0]);
+      const suffix = text.replace(numMatches[0], '');
+      
+      const obj = { val: 0 };
+      anime({
+        targets: obj,
+        val: targetNum,
+        round: 1,
+        duration: 2500,
+        easing: 'easeOutExpo',
+        update: function() {
+          el.textContent = obj.val + suffix;
+        }
+      });
+      obs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+countUpEls.forEach(el => counterObserver.observe(el));
+
+// ===== EPIC TIMELINE OVERVIEW (Anime.js) =====
+const timelineContainer = document.getElementById('timeline-container');
+if (timelineContainer) {
+  const items = timelineContainer.querySelectorAll('.timeline-epic');
+  const dots = timelineContainer.querySelectorAll('.timeline__dot');
+  items.forEach(item => { item.style.opacity = 0; item.style.transform = 'translateY(80px) scale(0.9)'; });
+  dots.forEach(dot => { dot.style.opacity = 0; dot.style.transform = 'scale(0)'; });
+  
+  const timelineObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (timelineContainer.dataset.animated) return;
+        timelineContainer.dataset.animated = 'true';
+        
+        const items = timelineContainer.querySelectorAll('.timeline-epic');
+        const dots = timelineContainer.querySelectorAll('.timeline__dot');
+        
+        // Timeline Animation
+        const tl = anime.timeline({
+          easing: 'easeOutElastic(1, .6)'
+        });
+        
+        tl.add({
+          targets: dots,
+          scale: [0, 1],
+          opacity: [0, 1],
+          delay: anime.stagger(150),
+          duration: 800
+        }).add({
+          targets: items,
+          translateY: [80, 0],
+          scale: [0.9, 1],
+          opacity: [0, 1],
+          delay: anime.stagger(150),
+          duration: 1200
+        }, '-=600');
+        
+        obs.unobserve(timelineContainer);
+      }
+    });
+  }, { threshold: 0.2 });
+  timelineObserver.observe(timelineContainer);
 }

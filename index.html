@@ -92,8 +92,20 @@
         <h1 class="hero__title">
           <img src="assets/images/brand/logo_teksST.png" alt="Sehat Tentrem" class="hero__title-img" />
         </h1>
-        <p class="hero__subtitle">Kretek warisan yang bertemu teknologi masa kini — untuk kebanggaan dan kesejahteraan Indonesia.</p>
-        <a href="#products" class="btn btn--gold hero__cta">Jelajahi Produk Kami</a>
+        <p class="hero__subtitle">Kretek warisan yang bertemu teknologi masa kini,<br>untuk kebanggaan dan kesejahteraan Indonesia.</p>
+        
+        <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start;">
+          <button id="hero-cta-store" class="btn btn--gold hero__cta" style="font-size: 1.1rem; padding: 18px 48px; box-shadow: 0 12px 30px rgba(200,169,110,0.4);">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: text-bottom; margin-right: 8px;">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Temukan Outlet Terdekat
+          </button>
+          
+          <a href="#products" class="btn btn--outline btn--sm" style="border:none; border-bottom: 1px solid var(--gold); border-radius:0; padding:4px 0; color:var(--text-muted); font-size: 0.8rem; margin-top: 8px; align-self: flex-start; text-transform: uppercase;">
+            Jelajahi Produk Kami →
+          </a>
+        </div>
       </div>
       <div class="hero__dots" id="hero-dots">
         <span class="hero__dot active" data-idx="0"></span>
@@ -122,6 +134,27 @@
       </div>
     </div>
 
+    <!-- SOCIAL VALIDATION SECTION -->
+    <section class="social-validation section" style="padding: 60px 0; border-bottom: 1px solid var(--border); background: var(--dark-2);">
+      <div class="container" style="text-align: center;">
+        <p class="section-eyebrow" style="margin-bottom: 24px;">Lebih dekat dari yang Anda kira</p>
+        <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span class="count-up" style="font-family: 'Roboto', sans-serif; font-size: 3rem; font-weight: 700; color: var(--gold); line-height: 1;">34</span>
+            <span style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px;">Provinsi</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span class="count-up" style="font-family: 'Roboto', sans-serif; font-size: 3rem; font-weight: 700; color: var(--gold); line-height: 1;">8600+</span>
+            <span style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px;">Outlet Terdata</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span class="count-up" style="font-family: 'Roboto', sans-serif; font-size: 3rem; font-weight: 700; color: var(--gold); line-height: 1;">100%</span>
+            <span style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px;">Nusantara</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT SECTION -->
     <section id="about" class="about section">
       <div class="container about__grid">
@@ -146,12 +179,12 @@
               <span class="stat-label">Varian Produk</span>
             </div>
             <div class="stat-item">
-              <span class="stat-num">500+</span>
+              <span class="stat-num">700+</span>
               <span class="stat-label">Karyawan</span>
             </div>
             <div class="stat-item">
-              <span class="stat-num">34</span>
-              <span class="stat-label">Provinsi Distribusi</span>
+              <span class="stat-num">70+</span>
+              <span class="stat-label">Mitra/Cabang</span>
             </div>
           </div>
         </div>
@@ -455,11 +488,11 @@
     <section id="cerita" class="cerita section">
       <div class="container">
         <div class="section-header reveal-up">
-          <p class="section-eyebrow">Cerita ST</p>
+          <p class="section-eyebrow">PERJALANAN ST</p>
           <h2 class="section-title">Perjalanan <em>Menemani Nusantara</em></h2>
         </div>
-        <div class="timeline">
-          <div class="timeline__item reveal-left">
+        <div class="timeline" id="timeline-container">
+          <div class="timeline__item timeline-epic">
             <div class="timeline__dot"></div>
             <div class="timeline__content">
               <span class="timeline__year">2013</span>
@@ -467,7 +500,7 @@
               <p class="timeline__desc">Di lingkungan Pesantren Shiddiqiyyah, Jombang — M. Subchi Azal Tsani, Founder Sehat Tentrem, mulai merintis resep kretek dengan cita rasa Nusantara. Empat tahun proses pencarian: memilih tembakau, menakar cengkih, dan meramu rempah di bumi Indonesia. Sebuah perjalanan penemuan resep kretek terbaik, dengan satu nafas: <em>Untuk Indonesia Raya</em>.</p>
             </div>
           </div>
-          <div class="timeline__item reveal-right">
+          <div class="timeline__item timeline-epic">
             <div class="timeline__dot"></div>
             <div class="timeline__content">
               <span class="timeline__year">2017</span>
@@ -475,7 +508,7 @@
               <p class="timeline__desc">Setelah resep matang dan formula stabil, ST resmi berdiri sebagai PR Sehat Tentrem Jaya Lestari yang berlokasi di Kabuh, Jombang, Jawa Timur. Ini merupakan titik ekspansi Sehat Tentrem ke berbagai perjuru Indonesia.</p>
             </div>
           </div>
-          <div class="timeline__item reveal-left">
+          <div class="timeline__item timeline-epic">
             <div class="timeline__dot"></div>
             <div class="timeline__content">
               <span class="timeline__year">2019</span>
@@ -483,7 +516,7 @@
               <p class="timeline__desc">Seiring berjalannya waktu, ST berkembang melampaui kretek — lahirnya Kopi Tombo ST, Susu Tombo ST, Klambi ST, dan Musik Sehat Tentrem (MST) sebagai satu ekosistem bisnis terintegrasi yang saling menguatkan.</p>
             </div>
           </div>
-          <div class="timeline__item reveal-right">
+          <div class="timeline__item timeline-epic">
             <div class="timeline__dot"></div>
             <div class="timeline__content">
               <span class="timeline__year">2022</span>
@@ -491,7 +524,7 @@
               <p class="timeline__desc">Dengan ratusan karyawan, jaringan agen di 34 provinsi, dan program CSR aktif — pada tahun 2022 PR Sehat Tentrem Jaya Lestari resmi berganti menjadi PT Sehat Tentrem Jaya Lestari, menandai awal peningkatan yang makin pesat.</p>
             </div>
           </div>
-          <div class="timeline__item reveal-left">
+          <div class="timeline__item timeline-epic">
             <div class="timeline__dot"></div>
             <div class="timeline__content">
               <span class="timeline__year">2026</span>
@@ -603,6 +636,30 @@
       </div>
     </section>
 
+    <!-- INSIGHT & ASSISTANCE SECTION -->
+    <section id="faq" class="faq section" style="background: var(--dark-2);">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Insight & Assistance</p>
+          <h2 class="section-title">Hal yang Perlu <em>Anda Ketahui</em></h2>
+        </div>
+        <div class="faq__accordion" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;">
+          <div class="faq__item" style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2);">
+            <button class="faq__question" aria-expanded="false" style="width: 100%; text-align: left; padding: 24px; background: none; border: none; font-family: 'Roboto', sans-serif; font-size: 1.1rem; color: var(--cream); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">Apakah ST dijual di minimarket seperti Indomaret / Alfamart?<span style="color:var(--gold)">+</span></button>
+            <div class="faq__answer" style="padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none;"><p>Belum, saat ini kami belum mendistribusikan produk melalui minimarket nasional. Kami fokus memberdayakan agen dan mitra distribusi kami yang kini telah tersebar di 34 provinsi di seluruh Indonesia.</p></div>
+          </div>
+          <div class="faq__item" style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2);">
+            <button class="faq__question" aria-expanded="false" style="width: 100%; text-align: left; padding: 24px; background: none; border: none; font-family: 'Roboto', sans-serif; font-size: 1.1rem; color: var(--cream); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">Bisa COD atau kirim ke seluruh Indonesia?<span style="color:var(--gold)">+</span></button>
+            <div class="faq__answer" style="padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none;"><p>Bisa. Banyak agen resmi kami yang melayani pengiriman ke seluruh Nusantara. Silakan cari agen terdekat melalui Locator kami, atau hubungi WhatsApp resmi untuk diarahkan.</p></div>
+          </div>
+          <div class="faq__item" style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2);">
+            <button class="faq__question" aria-expanded="false" style="width: 100%; text-align: left; padding: 24px; background: none; border: none; font-family: 'Roboto', sans-serif; font-size: 1.1rem; color: var(--cream); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">Bagaimana cara menjadi agen ST?<span style="color:var(--gold)">+</span></button>
+            <div class="faq__answer" style="padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none;"><p>Anda dapat menghubungi kami melalui form kontak di atas, pilih kategori "Jadi agen / mitra distribusi", lalu tim kami akan menghubungi Anda via WhatsApp dengan detail persyaratannya.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer__inner">
@@ -643,8 +700,35 @@
     <!-- BACK TO TOP -->
     <button id="back-to-top" class="back-to-top" aria-label="Kembali ke atas">↑</button>
 
+    <!-- LOCATOR MODAL -->
+    <div id="locator-modal" class="locator-modal" aria-hidden="true">
+      <div class="locator-modal__bg" id="locator-bg"></div>
+      <div class="locator-modal__content">
+        <button id="locator-close" class="locator-close" aria-label="Tutup">×</button>
+        <h3 class="locator-modal__title">Temukan ST Terdekat</h3>
+        <p class="locator-modal__desc">Pilih atau ketik nama kota Anda untuk menemukan outlet resmi Sehat Tentrem terdekat.</p>
+        
+        <form class="locator-search" id="locator-form" onsubmit="event.preventDefault(); window.open('https://info-st.com/location', '_blank');">
+          <input type="text" id="locator-input" placeholder="Contoh: Surabaya, Jakarta, Malang..." autocomplete="off">
+          <button type="submit" class="btn btn--gold locator-submit" style="margin-top: 16px;">Cari Outlet</button>
+        </form>
+        
+        <p style="font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;">Kota Populer</p>
+        <div class="locator-suggestions">
+          <button type="button" class="city-chip" onclick="document.getElementById('locator-input').value = 'Surabaya';">Surabaya</button>
+          <button type="button" class="city-chip" onclick="document.getElementById('locator-input').value = 'Jakarta';">Jakarta</button>
+          <button type="button" class="city-chip" onclick="document.getElementById('locator-input').value = 'Malang';">Malang</button>
+          <button type="button" class="city-chip" onclick="document.getElementById('locator-input').value = 'Sidoarjo';">Sidoarjo</button>
+          <button type="button" class="city-chip" onclick="document.getElementById('locator-input').value = 'Bandung';">Bandung</button>
+          <button type="button" class="city-chip" onclick="document.getElementById('locator-input').value = 'Yogyakarta';">Yogyakarta</button>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /main-site -->
 
+  <!-- Anime.js (Epic Animations) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
