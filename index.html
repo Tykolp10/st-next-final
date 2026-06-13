@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ST Sehat Tentrem – Warisan Ketenangan Nusantara</title>
+  <title>ST Sehat Tentrem – Nafas Perjuangan Nusantara</title>
   <meta name="description" content="ST Sehat Tentrem – Rokok kretek premium dengan jiwa tenang dan warisan budaya Nusantara yang kaya." />
+  <meta name="store-locator-url" content="https://info-st.com/location" />
+  <meta name="store-locator-version" content="external-v1" />
+  <meta name="whatsapp-fallback" content="6281335730002" />
   <link rel="icon" href="assets/images/brand/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +30,7 @@
         <span class="age-gate__logo-fallback" style="display:none">ST</span>
       </div>
       <p class="age-gate__tagline">Sehat Tentrem</p>
-      <h2 class="age-gate__title">Warisan Ketenangan Nusantara</h2>
+      <h2 class="age-gate__title">Nafas Perjuangan Nusantara</h2>
       <p class="age-gate__desc">Situs ini hanya untuk pengunjung dewasa berusia 21 tahun ke atas. Apakah Anda berusia 21 tahun atau lebih?</p>
       <div class="age-gate__actions">
         <button id="age-yes" class="btn btn--gold">Ya, Saya Berusia 21+</button>
@@ -73,7 +76,7 @@
         </div>
         <div class="hero__slide" style="background-image:url('assets/images/hero/hero-2.jpg')">
           <div class="hero__slide-inner fallback-bg-2"></div>
-          <div class="hero__slide-caption">Warisan Ketenangan Nusantara</div>
+          <div class="hero__slide-caption">Nafas Perjuangan Nusantara</div>
         </div>
         <div class="hero__slide" style="background-image:url('assets/images/hero/hero-3.jpg')">
           <div class="hero__slide-inner fallback-bg-3"></div>
@@ -600,7 +603,7 @@
           <h2 class="section-title">Temukan ST <em>di Dekat Anda</em></h2>
           <p class="kontak__desc">Untuk informasi produk, distribusi, atau pertanyaan lainnya, silakan hubungi kami melalui kontak di bawah ini.</p>
           <ul class="kontak__list">
-            <li><span class="kontak__icon">📍</span><span>Jl. Raya Kabuh–Tapen, Desa Kauman, Kec. Kabuh, Kab. Jombang — Jawa Timur, Indonesia Raya</span></li>
+            <li><span class="kontak__icon">📍</span><span>Jln Soekarno Hatta no. 22, Nglungge, Peterongan, Jombang — Jawa Timur, Indonesia Raya</span></li>
             <li><span class="kontak__icon">📞</span><span><a href="tel:+6281335730002" style="color:inherit;text-decoration:none">+62 813-3573-0002</a></span></li>
             <li><span class="kontak__icon">🌐</span><span><a href="https://info-st.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">info-st.com</a></span></li>
             <li><span class="kontak__icon">🕐</span><span>Senin–Jumat, 08.00–17.00 WIB</span></li>
@@ -615,6 +618,17 @@
         <div class="kontak__form reveal-right">
           <form class="contact-form" id="contact-form" novalidate>
             <p class="form-intro">Pesan akan dikirim langsung ke WhatsApp resmi ST.</p>
+            <div class="form-group">
+              <label for="kategori">Kategori Pesan</label>
+              <select id="kategori" name="kategori" required style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border); padding: 12px 16px; font-size: 0.95rem; color: var(--cream); border-radius: 6px; outline: none; transition: border-color 0.3s; font-family: inherit;">
+                <option value="" disabled selected>Pilih Kategori...</option>
+                <option value="stok">Tanya Stok Produk</option>
+                <option value="agen">Tertarik Menjadi Agen / Mitra</option>
+                <option value="kerjasama">Kerjasama / Kolaborasi</option>
+                <option value="media">Pertanyaan Media</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
             <div class="form-group">
               <label for="nama">Nama Lengkap</label>
               <input type="text" id="nama" name="nama" placeholder="Nama Anda" required />
@@ -643,18 +657,18 @@
           <p class="section-eyebrow">Insight & Assistance</p>
           <h2 class="section-title">Hal yang Perlu <em>Anda Ketahui</em></h2>
         </div>
-        <div class="faq__accordion" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;">
-          <div class="faq__item" style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2);">
-            <button class="faq__question" aria-expanded="false" style="width: 100%; text-align: left; padding: 24px; background: none; border: none; font-family: 'Roboto', sans-serif; font-size: 1.1rem; color: var(--cream); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">Apakah ST dijual di minimarket seperti Indomaret / Alfamart?<span style="color:var(--gold)">+</span></button>
-            <div class="faq__answer" style="padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none;"><p>Belum, saat ini kami belum mendistribusikan produk melalui minimarket nasional. Kami fokus memberdayakan agen dan mitra distribusi kami yang kini telah tersebar di 34 provinsi di seluruh Indonesia.</p></div>
+        <div class="faq__accordion">
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">Apakah ST dijual di minimarket seperti Indomaret / Alfamart?</button>
+            <div class="faq__answer"><p>Belum, saat ini kami belum mendistribusikan produk melalui minimarket nasional. Kami fokus memberdayakan agen dan mitra distribusi kami yang kini telah tersebar di 34 provinsi di seluruh Indonesia.</p></div>
           </div>
-          <div class="faq__item" style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2);">
-            <button class="faq__question" aria-expanded="false" style="width: 100%; text-align: left; padding: 24px; background: none; border: none; font-family: 'Roboto', sans-serif; font-size: 1.1rem; color: var(--cream); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">Bisa COD atau kirim ke seluruh Indonesia?<span style="color:var(--gold)">+</span></button>
-            <div class="faq__answer" style="padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none;"><p>Bisa. Banyak agen resmi kami yang melayani pengiriman ke seluruh Nusantara. Silakan cari agen terdekat melalui Locator kami, atau hubungi WhatsApp resmi untuk diarahkan.</p></div>
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">Bisa COD atau kirim ke seluruh Indonesia?</button>
+            <div class="faq__answer"><p>Bisa. Banyak agen resmi kami yang melayani pengiriman ke seluruh Nusantara. Silakan cari agen terdekat melalui Locator kami, atau hubungi WhatsApp resmi untuk diarahkan.</p></div>
           </div>
-          <div class="faq__item" style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2);">
-            <button class="faq__question" aria-expanded="false" style="width: 100%; text-align: left; padding: 24px; background: none; border: none; font-family: 'Roboto', sans-serif; font-size: 1.1rem; color: var(--cream); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">Bagaimana cara menjadi agen ST?<span style="color:var(--gold)">+</span></button>
-            <div class="faq__answer" style="padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; display: none;"><p>Anda dapat menghubungi kami melalui form kontak di atas, pilih kategori "Jadi agen / mitra distribusi", lalu tim kami akan menghubungi Anda via WhatsApp dengan detail persyaratannya.</p></div>
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false">Bagaimana cara menjadi agen ST?</button>
+            <div class="faq__answer"><p>Anda dapat menghubungi kami melalui form kontak di atas, pilih kategori "Jadi agen / mitra distribusi", lalu tim kami akan menghubungi Anda via WhatsApp dengan detail persyaratannya.</p></div>
           </div>
         </div>
       </div>
@@ -708,7 +722,7 @@
         <h3 class="locator-modal__title">Temukan ST Terdekat</h3>
         <p class="locator-modal__desc">Pilih atau ketik nama kota Anda untuk menemukan outlet resmi Sehat Tentrem terdekat.</p>
         
-        <form class="locator-search" id="locator-form" onsubmit="event.preventDefault(); window.open('https://info-st.com/location', '_blank');">
+        <form class="locator-search" id="locator-form">
           <input type="text" id="locator-input" placeholder="Contoh: Surabaya, Jakarta, Malang..." autocomplete="off">
           <button type="submit" class="btn btn--gold locator-submit" style="margin-top: 16px;">Cari Outlet</button>
         </form>
@@ -729,6 +743,7 @@
 
   <!-- Anime.js (Epic Animations) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

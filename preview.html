@@ -261,6 +261,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
           <span>Mobile</span>
         </button>
+        <button class="sw-btn" data-mode="mobile-in" onclick="setMode('mobile-in')" title="Mobile Indo (4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          <span>Mobile IN (360x800)</span>
+        </button>
       </div>
       <div class="divider"></div>
       <button class="tool-btn" id="btn-entire" onclick="toggleEntire()" title="Semua Device (E)">
@@ -332,9 +336,10 @@
 
   <script>
     const INFO = {
-      desktop: { label:'MacBook Pro · 1280 × 800', vp:'<b>1280</b> × <b>800</b>', status:'Desktop' },
-      tablet:  { label:'iPad Air · 820 × 1180',    vp:'<b>820</b> × <b>1180</b>', status:'Tablet' },
-      mobile:  { label:'iPhone 15 · 393 × 852',    vp:'<b>393</b> × <b>852</b>',  status:'iPhone 15' },
+      desktop:   { label:'MacBook Pro · 1280 × 800', vp:'<b>1280</b> × <b>800</b>', status:'Desktop' },
+      tablet:    { label:'iPad Air · 820 × 1180',    vp:'<b>820</b> × <b>1180</b>', status:'Tablet' },
+      mobile:    { label:'iPhone 15 · 393 × 852',    vp:'<b>393</b> × <b>852</b>',  status:'iPhone 15' },
+      'mobile-in': { label:'Mobile Indonesia · 360 × 800', vp:'<b>360</b> × <b>800</b>', status:'Mobile Indo' }
     };
 
     let mode = 'desktop';
@@ -348,7 +353,26 @@
       // shells
       document.getElementById('shell-desktop').style.display = m === 'desktop' ? '' : 'none';
       document.getElementById('shell-tablet').style.display  = m === 'tablet'  ? '' : 'none';
-      document.getElementById('shell-mobile').style.display  = m === 'mobile'  ? '' : 'none';
+      
+      const mobileShell = document.getElementById('shell-mobile');
+      if (m === 'mobile' || m === 'mobile-in') {
+        mobileShell.style.display = '';
+        const screenEl = mobileShell.querySelector('.screen');
+        if (screenEl) {
+          if (m === 'mobile-in') {
+            screenEl.style.width = '360px';
+            screenEl.style.height = '800px';
+            screenEl.style.borderRadius = '24px';
+          } else {
+            screenEl.style.width = '';
+            screenEl.style.height = '';
+            screenEl.style.borderRadius = '';
+          }
+        }
+      } else {
+        mobileShell.style.display = 'none';
+      }
+      
       // labels
       document.getElementById('dev-label').textContent = INFO[m].label;
       document.getElementById('vp-label').innerHTML = INFO[m].vp;
@@ -376,6 +400,7 @@
       if (e.key === '1') setMode('desktop');
       if (e.key === '2') setMode('tablet');
       if (e.key === '3') setMode('mobile');
+      if (e.key === '4') setMode('mobile-in');
       if (e.key === 'e' || e.key === 'E') toggleEntire();
     });
   </script>

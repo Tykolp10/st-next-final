@@ -1,3 +1,26 @@
+// ===== DEVICE DETECTOR & CLASS TOGGLER =====
+function updateDeviceClasses() {
+  const width = window.innerWidth;
+  const body = document.body;
+  if (!body) return;
+  
+  body.classList.remove('is-mobile', 'is-tablet', 'is-desktop');
+  
+  if (width < 640) {
+    body.classList.add('is-mobile');
+  } else if (width >= 640 && width < 1024) {
+    body.classList.add('is-tablet');
+  } else {
+    body.classList.add('is-desktop');
+  }
+}
+window.addEventListener('resize', updateDeviceClasses);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateDeviceClasses);
+} else {
+  updateDeviceClasses();
+}
+
 // ===== AGE GATE =====
 const ageGate = document.getElementById('age-gate');
 const mainSite = document.getElementById('main-site');
@@ -35,7 +58,11 @@ function playEpicHeroEntrance() {
 if (sessionStorage.getItem('st-age-verified')) {
   ageGate.style.display = 'none';
   mainSite.classList.remove('hidden');
-  document.addEventListener('DOMContentLoaded', playEpicHeroEntrance);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', playEpicHeroEntrance);
+  } else {
+    playEpicHeroEntrance();
+  }
 } else {
   ageYes.addEventListener('click', () => {
     sessionStorage.setItem('st-age-verified', '1');
@@ -142,49 +169,35 @@ startSlider();
 
 // ===== SCROLL REVEAL =====
 const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-// Set initial states so elements don't flicker before observer fires
-revealEls.forEach(el => {
-  el.style.opacity = 0;
-  if (el.classList.contains('reveal-up')) el.style.transform = 'translateY(50px)';
-  if (el.classList.contains('reveal-left')) el.style.transform = 'translateX(-50px)';
-  if (el.classList.contains('reveal-right')) el.style.transform = 'translateX(50px)';
-});
 
 const revealOptions = {
   root: null,
-  rootMargin: '0px 0px -10% 0px',
+  rootMargin: '0px 0px -8% 0px',
   threshold: 0
 };
 
-const revealObserver = new IntersectionObserver((entries, obs) => {
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
+    const el = entry.target;
     if (entry.isIntersecting) {
-      const el = entry.target;
       const delay = el.dataset.delay ? parseInt(el.dataset.delay) : 0;
-      
-      let translateX = 0;
-      let translateY = 0;
-      if (el.classList.contains('reveal-up')) translateY = [50, 0];
-      if (el.classList.contains('reveal-left')) translateX = [-50, 0];
-      if (el.classList.contains('reveal-right')) translateX = [50, 0];
-      
-      if (typeof anime !== 'undefined') {
-        anime({
-          targets: el,
-          opacity: [0, 1],
-          translateX: translateX || 0,
-          translateY: translateY || 0,
-          duration: 1200,
-          delay: delay,
-          easing: 'easeOutElastic(1, .8)'
-        });
+      if (delay > 0) {
+        if (el.dataset.timeoutId) {
+          clearTimeout(parseInt(el.dataset.timeoutId));
+        }
+        const timeoutId = setTimeout(() => {
+          el.classList.add('visible');
+        }, delay);
+        el.dataset.timeoutId = timeoutId;
       } else {
-        el.style.transition = 'all 1s ease';
-        el.style.opacity = 1;
-        el.style.transform = 'translate(0,0)';
+        el.classList.add('visible');
       }
-      
-      obs.unobserve(el);
+    } else {
+      if (el.dataset.timeoutId) {
+        clearTimeout(parseInt(el.dataset.timeoutId));
+        el.dataset.timeoutId = '';
+      }
+      el.classList.remove('visible');
     }
   });
 }, revealOptions);
@@ -287,29 +300,128 @@ if (backTop) {
 
 // ===== STORE LOCATOR PROTOTYPE LOGIC =====
 if (typeof ST_CONFIG !== 'undefined') {
+  const locatorModal = document.getElementById('locator-modal');
+  const locatorClose = document.getElementById('locator-close');
+  const locatorBg = document.getElementById('locator-bg');
+  const locatorForm = document.getElementById('locator-form');
+  const locatorInput = document.getElementById('locator-input');
+
+  function openLocator(utmCampaign = 'general', utmContent = 'button-click') {
+    if (!locatorModal) return;
+    locatorModal.classList.add('is-open');
+    locatorModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    // Save UTM context on the form dataset so we can use it on submit
+    if (locatorForm) {
+      locatorForm.dataset.utmCampaign = utmCampaign;
+      locatorForm.dataset.utmContent = utmContent;
+    }
+    
+    if (typeof anime !== 'undefined') {
+      anime({
+        targets: locatorModal.querySelector('.locator-modal__content'),
+        translateY: [20, 0],
+        scale: [0.95, 1],
+        opacity: [0, 1],
+        duration: 800,
+        easing: 'easeOutElastic(1, .6)'
+      });
+      anime({
+        targets: locatorModal.querySelectorAll('.city-chip'),
+        scale: [0.8, 1],
+        opacity: [0, 1],
+        delay: anime.stagger(50, {start: 300}),
+        duration: 600,
+        easing: 'easeOutBack'
+      });
+    }
+    
+    setTimeout(() => locatorInput && locatorInput.focus(), 300);
+  }
+
+  function closeLocator() {
+    if (!locatorModal) return;
+    if (typeof anime !== 'undefined') {
+      anime({
+        targets: locatorModal.querySelector('.locator-modal__content'),
+        scale: [1, 0.95],
+        opacity: [1, 0],
+        duration: 300,
+        easing: 'easeInSine',
+        complete: () => {
+          locatorModal.classList.remove('is-open');
+          locatorModal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          locatorModal.querySelector('.locator-modal__content').style.opacity = 1;
+          locatorModal.querySelector('.locator-modal__content').style.transform = 'translateY(20px)';
+        }
+      });
+    } else {
+      locatorModal.classList.remove('is-open');
+      locatorModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (locatorClose) locatorClose.addEventListener('click', closeLocator);
+  if (locatorBg) locatorBg.addEventListener('click', closeLocator);
+
+  // Close on ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && locatorModal && locatorModal.classList.contains('is-open')) {
+      closeLocator();
+    }
+  });
+
+  // Handle Form Submit
+  if (locatorForm) {
+    locatorForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const city = locatorInput.value.trim();
+      const campaign = locatorForm.dataset.utmCampaign || 'modal-search';
+      const content = locatorForm.dataset.utmContent || 'submit';
+      const targetUrl = ST_CONFIG.buildStoreLocatorUrl({
+        utm_campaign: campaign,
+        utm_content: content,
+        city: city || undefined
+      });
+      window.open(targetUrl, '_blank', 'noopener');
+      closeLocator();
+    });
+  }
+
+  // Handle City Chips
+  if (locatorModal) {
+    locatorModal.querySelectorAll('.city-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const city = chip.textContent.trim();
+        if (locatorInput) {
+          locatorInput.value = city;
+          // Trigger form submit
+          const submitEvent = new Event('submit', { cancelable: true });
+          locatorForm.dispatchEvent(submitEvent);
+        }
+      });
+    });
+  }
+
   // Hero CTA Button
   const heroCtaStore = document.getElementById('hero-cta-store');
   if (heroCtaStore) {
     heroCtaStore.addEventListener('click', (e) => {
       e.preventDefault();
-      window.location.href = ST_CONFIG.buildStoreLocatorUrl({
-        utm_campaign: 'hero-cta',
-        utm_content: 'primary-button'
-      });
+      openLocator('hero-cta', 'primary-button');
     });
   }
 
   // Product Card CTAs
-  document.querySelectorAll('.cta-store-locator').forEach(link => {
+  document.querySelectorAll('.product-card__overlay a, .cta-store-locator').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const product = link.dataset.product;
-      const ctaType = link.dataset.ctaType;
-      window.location.href = ST_CONFIG.buildStoreLocatorUrl({
-        utm_campaign: ctaType,
-        utm_content: product,
-        product: product
-      });
+      const product = link.dataset.product || 'general';
+      const ctaType = link.dataset.ctaType || 'product-card';
+      openLocator(ctaType, product);
     });
   });
 
@@ -318,10 +430,7 @@ if (typeof ST_CONFIG !== 'undefined') {
   const stickyBtn = document.getElementById('sticky-btn');
   if (stickyCtaMobile && stickyBtn) {
     stickyBtn.addEventListener('click', () => {
-      window.location.href = ST_CONFIG.buildStoreLocatorUrl({
-        utm_campaign: 'sticky-mobile',
-        utm_content: 'persistent-cta'
-      });
+      openLocator('sticky-mobile', 'persistent-cta');
     });
 
     // Hide when hero is in view
@@ -373,45 +482,7 @@ document.querySelectorAll('.timeline__title').forEach(title => {
   });
 });
 
-// ===== ANIME.JS ANIMATIONS =====
-// ===== ANIME.JS ANIMATIONS =====
-function initAnimations() {
-  if (typeof anime === 'undefined') return;
-  // Hero Animation
-  anime({
-    targets: '.hero__title--task',
-    translateY: [20, 0],
-    opacity: [0, 1],
-    duration: 1200,
-    easing: 'easeOutCubic',
-    delay: 300
-  });
 
-  // Counter Animation using Intersection Observer
-  const statsObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      document.querySelectorAll('.stat-num').forEach(el => {
-        const value = parseInt(el.innerText.replace(/[^0-9]/g, ''));
-        const isPlus = el.innerText.includes('+');
-        anime({
-          targets: el,
-          innerHTML: [0, value],
-          round: 1,
-          easing: 'easeOutExpo',
-          duration: 2000,
-          update: function(a) {
-            el.innerHTML = a.animations[0].currentValue + (isPlus ? '+' : '');
-          }
-        });
-      });
-      statsObserver.disconnect();
-    }
-  });
-  const statsContainer = document.querySelector('.about__stats');
-  if (statsContainer) statsObserver.observe(statsContainer);
-}
-
-window.addEventListener('anime-ready', initAnimations);
 
 // ===== EPIC COUNTER (Anime.js) =====
 const countUpEls = document.querySelectorAll('.count-up');
