@@ -242,15 +242,27 @@ if (form) {
       lainnya: `Halo ST, saya ingin bertanya tentang...`
     };
 
-    const text =
-      `*Pesan dari Website ST Sehat Tentrem*%0A%0A` +
-      `*Kategori:* ${kategori}%0A` +
-      `*Nama:* ${encodeURIComponent(nama)}%0A` +
-      (email ? `*Email:* ${encodeURIComponent(email)}%0A` : '') +
-      `*Pesan:*%0A${encodeURIComponent(templates[kategori] || '')} %0A${encodeURIComponent(pesan)}`;
+    const kategoriLabels = {
+      stok: 'Pertanyaan Stok / Distribusi',
+      agen: 'Jadi Agen / Mitra Distribusi',
+      kerjasama: 'Kolaborasi / Kerjasama',
+      media: 'Pertanyaan Media',
+      lainnya: 'Lainnya'
+    };
+    const kategoriLabel = kategoriLabels[kategori] || kategori;
+
+    const messageText =
+      `*Pesan dari Website ST Sehat Tentrem*\n\n` +
+      `*Kategori:* ${kategoriLabel}\n` +
+      `*Nama:* ${nama}\n` +
+      (email ? `*Email:* ${email}\n` : '') +
+      `\n*Pesan:*\n${templates[kategori] ? templates[kategori] + '\n' : ''}${pesan}`;
       
     // ST_CONFIG loaded from config.js
-    const waUrl = typeof ST_CONFIG !== 'undefined' ? ST_CONFIG.buildWhatsappUrl(text) : `https://wa.me/6281335730002?text=${text}`;
+    const waUrl = typeof ST_CONFIG !== 'undefined' 
+      ? ST_CONFIG.buildWhatsappUrl(messageText) 
+      : `https://wa.me/6281335730002?text=${encodeURIComponent(messageText)}`;
+      
     window.open(waUrl, '_blank', 'noopener');
     formNote.textContent = '✓ Membuka WhatsApp...';
     formNote.style.color = 'var(--gold)';
