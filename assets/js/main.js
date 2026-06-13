@@ -235,11 +235,11 @@ if (form) {
     }
 
     const templates = {
-      stok: `Halo ST, saya ingin tanya stok produk...`,
-      agen: `Halo ST, saya tertarik menjadi agen/mitra distribusi...`,
-      kerjasama: `Halo ST, kami ingin berkolaborasi...`,
-      media: `Halo ST, saya ingin menanyakan terkait media...`,
-      lainnya: `Halo ST, saya ingin bertanya tentang...`
+      stok: `Halo min, saya ingin tanya tentang stok produk.`,
+      agen: `Halo min, saya tertarik untuk menjadi agen/mitra distribusi resmi Sehat Tentrem.`,
+      kerjasama: `Halo min, kami tertarik untuk berkolaborasi / menjalin kerjasama.`,
+      media: `Halo min, saya ingin menanyakan perihal kemitraan media.`,
+      lainnya: `Halo min, saya ingin menyampaikan hal berikut.`
     };
 
     const kategoriLabels = {
@@ -252,11 +252,11 @@ if (form) {
     const kategoriLabel = kategoriLabels[kategori] || kategori;
 
     const messageText =
-      `*Pesan dari Website ST Sehat Tentrem*\n\n` +
-      `*Kategori:* ${kategoriLabel}\n` +
-      `*Nama:* ${nama}\n` +
+      `*Pesan dari Website InfoST*\n\n` +
+      `*Pengirim:* ${nama}\n` +
       (email ? `*Email:* ${email}\n` : '') +
-      `\n*Pesan:*\n${templates[kategori] ? templates[kategori] + '\n' : ''}${pesan}`;
+      `*Kategori:* ${kategoriLabel}\n\n` +
+      `*Pesan:*\n${templates[kategori] ? templates[kategori] + '\n' : ''}${pesan}`;
       
     // ST_CONFIG loaded from config.js
     const waUrl = typeof ST_CONFIG !== 'undefined' 
