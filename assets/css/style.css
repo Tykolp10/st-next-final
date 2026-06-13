@@ -1490,4 +1490,15 @@ select#kategori option {
     gap: 8px !important;
     padding: 16px 0 !important;
   }
+
+  /* Explore Products Link alignment & arrow swap */
+  body.is-mobile #hero-explore-link {
+    align-self: center !important;
+  }
+  body.is-mobile #hero-explore-link .explore-arrow-right {
+    display: none !important;
+  }
+  body.is-mobile #hero-explore-link .explore-arrow-down {
+    display: inline-block !important;
+  }
 }
