@@ -312,12 +312,6 @@ if (backTop) {
 
 // ===== STORE LOCATOR PROTOTYPE LOGIC =====
 if (typeof ST_CONFIG !== 'undefined') {
-  const locatorModal = document.getElementById('locator-modal');
-  const locatorClose = document.getElementById('locator-close');
-  const locatorBg = document.getElementById('locator-bg');
-  const locatorForm = document.getElementById('locator-form');
-  const locatorInput = document.getElementById('locator-input');
-
   function openLocator(utmCampaign = 'general', utmContent = 'button-click') {
     // Redirect langsung ke URL luar dengan parameter UTM sesuai feedback atasan
     const targetUrl = ST_CONFIG.buildStoreLocatorUrl({
@@ -329,76 +323,6 @@ if (typeof ST_CONFIG !== 'undefined') {
       umami.track('Open Store Locator', { campaign: utmCampaign, content: utmContent });
     }
     window.open(targetUrl, '_blank', 'noopener');
-  }
-
-  function closeLocator() {
-    if (!locatorModal) return;
-    if (typeof anime !== 'undefined') {
-      anime({
-        targets: locatorModal.querySelector('.locator-modal__content'),
-        scale: [1, 0.95],
-        opacity: [1, 0],
-        duration: 300,
-        easing: 'easeInSine',
-        complete: () => {
-          locatorModal.classList.remove('is-open');
-          locatorModal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-          locatorModal.querySelector('.locator-modal__content').style.opacity = 1;
-          locatorModal.querySelector('.locator-modal__content').style.transform = 'translateY(20px)';
-        }
-      });
-    } else {
-      locatorModal.classList.remove('is-open');
-      locatorModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  }
-
-  if (locatorClose) locatorClose.addEventListener('click', closeLocator);
-  if (locatorBg) locatorBg.addEventListener('click', closeLocator);
-
-  // Close on ESC
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && locatorModal && locatorModal.classList.contains('is-open')) {
-      closeLocator();
-    }
-  });
-
-  // Handle Form Submit
-  if (locatorForm) {
-    locatorForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const city = locatorInput.value.trim();
-      const campaign = locatorForm.dataset.utmCampaign || 'modal-search';
-      const content = locatorForm.dataset.utmContent || 'submit';
-      const targetUrl = ST_CONFIG.buildStoreLocatorUrl({
-        utm_campaign: campaign,
-        utm_content: content,
-        city: city || undefined
-      });
-      // Track via Umami if active
-      if (typeof umami !== 'undefined') {
-        umami.track('Search Store', { city: city || 'any', campaign: campaign, content: content });
-      }
-      window.open(targetUrl, '_blank', 'noopener');
-      closeLocator();
-    });
-  }
-
-  // Handle City Chips
-  if (locatorModal) {
-    locatorModal.querySelectorAll('.city-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const city = chip.textContent.trim();
-        if (locatorInput) {
-          locatorInput.value = city;
-          // Trigger form submit
-          const submitEvent = new Event('submit', { cancelable: true });
-          locatorForm.dispatchEvent(submitEvent);
-        }
-      });
-    });
   }
 
   // Hero CTA Button
@@ -437,23 +361,6 @@ if (typeof ST_CONFIG !== 'undefined') {
       }
     }, { rootMargin: '-10% 0px 0px 0px', threshold: 0 });
     if (heroSection) heroObserver.observe(heroSection);
-  }
-
-  // Hero WhatsApp Fallback
-  const heroWaFallback = document.getElementById('hero-wa-fallback');
-  if (heroWaFallback) {
-    heroWaFallback.addEventListener('click', (e) => {
-      e.preventDefault();
-      const city = document.getElementById('hero-city-input')?.value || '';
-      const message = city
-        ? `Halo ST, saya di ${city}. Bisa info di mana saya bisa beli ST di sekitar sini?`
-        : `Halo ST, saya ingin tanya di mana toko ST terdekat dari lokasi saya.`;
-      // Track via Umami if active
-      if (typeof umami !== 'undefined') {
-        umami.track('WhatsApp Fallback Click', { city: city || 'none' });
-      }
-      window.location.href = ST_CONFIG.buildWhatsappUrl(message);
-    });
   }
 }
 
