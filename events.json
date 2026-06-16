@@ -1,0 +1,23 @@
+[
+  {
+    "category": "Musik & Budaya",
+    "title": "Jazzy Friday with Indro Hardjodikoro",
+    "desc": "Intimate Jazz Night bersama ambassador ST, Indro Hardjodikoro di Ruang Putih Bandung.",
+    "image": "assets/images/inspiration/event-jazz-bandung.jpg",
+    "link": "https://www.instagram.com/p/DW3c5mqkcPz/"
+  },
+  {
+    "category": "Event Ramadhan",
+    "title": "Ramadhan Kampoeng Majapahit",
+    "desc": "Berbagi inspirasi, cerita, dan suasana hangat Ramadhan bersama Sehat Tentrem di Mojokerto.",
+    "image": "assets/images/inspiration/event-ramadan-mojokerto.jpg",
+    "link": "https://www.instagram.com/p/DVP5914EQIc/"
+  },
+  {
+    "category": "Religi & Budaya",
+    "title": "Pengajian Tasyakkuran Isro' Mi'roj",
+    "desc": "ST memeriahkan Pengajian Tasyakkuran Isro' Mi'roj Nabi Muhammad SAW dan Hari Shiddiqiyyah 1447 H.",
+    "image": "assets/images/inspiration/event-isra-miraj.jpg",
+    "link": "https://www.instagram.com/p/DTfHX-eEV7p/"
+  }
+]

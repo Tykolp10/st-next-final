@@ -465,3 +465,45 @@ if (timelineContainer) {
   }, { threshold: 0.2 });
   timelineObserver.observe(timelineContainer);
 }
+
+// ===== DYNAMIC EVENTS LOADER (from events.json) =====
+function loadDynamicEvents() {
+  const inspirasiGrid = document.getElementById('inspirasi-grid');
+  if (!inspirasiGrid) return;
+
+  fetch('events.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(events => {
+      if (!Array.isArray(events) || events.length === 0) return;
+      
+      // Build HTML for the top 3 events
+      const html = events.slice(0, 3).map((event, idx) => `
+        <a href="${event.link}" target="_blank" rel="noopener" class="insp-card reveal-up" style="text-decoration:none; color:inherit;" data-delay="${idx * 100}">
+          <div class="insp-card__img">
+            <img src="${event.image}" alt="${event.title}" onerror="this.parentElement.classList.add('insp-card__img--fallback-${idx + 1}')" />
+          </div>
+          <div class="insp-card__body">
+            <span class="insp-card__cat">${event.category}</span>
+            <h3 class="insp-card__title">${event.title}</h3>
+            <p class="insp-card__text">${event.desc}</p>
+            <span class="insp-card__soon" style="color:var(--gold); border-color:var(--gold)">Lihat di Instagram →</span>
+          </div>
+        </a>
+      `).join('');
+
+      inspirasiGrid.innerHTML = html;
+
+      // Re-observe for scroll reveal animations
+      if (typeof revealObserver !== 'undefined') {
+        inspirasiGrid.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+      }
+    })
+    .catch(error => {
+      console.log('Using hardcoded fallback events. Info:', error.message);
+    });
+}
+document.addEventListener('DOMContentLoaded', loadDynamicEvents);
+
