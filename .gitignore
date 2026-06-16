@@ -24,3 +24,7 @@ test-server.ps1
 # Folder temp/cache
 .cache/
 node_modules/
+
+# Folder development/prototype lokal
+ST-Prototype-v1/
+ST-SehatTentrem/
