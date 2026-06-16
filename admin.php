@@ -7,9 +7,10 @@
 session_start();
 
 // ==========================================
-// KONFIGURASI KEAMANAN (UBAH PASSWORD DI SINI)
+// KONFIGURASI KEAMANAN (UBAH DI SINI)
 // ==========================================
-define('ADMIN_PASSWORD', 'adminst2026'); 
+define('ADMIN_USERNAME', 'admin');
+define('ADMIN_PASSWORD', '12354321'); 
 
 $eventsFile = __DIR__ . '/events.json';
 $uploadDir = __DIR__ . '/assets/images/inspiration/';
@@ -53,13 +54,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 // Logika Login
 $loginError = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
-    if ($password === ADMIN_PASSWORD) {
+    if ($username === ADMIN_USERNAME && $password === ADMIN_PASSWORD) {
         $_SESSION['st_logged_in'] = true;
         header('Location: admin.php');
         exit;
     } else {
-        $loginError = 'Password salah!';
+        $loginError = 'Username atau password salah!';
     }
 }
 
@@ -411,12 +413,16 @@ function move_uploaded_path($tmp, $dest) {
         <form action="admin.php" method="POST">
           <input type="hidden" name="login" value="1">
           <div class="form-group">
-            <label for="password">Masukkan Kata Sandi</label>
-            <input type="password" id="password" name="password" class="form-control" required autofocus placeholder="Password Panel">
+            <label for="username">Nama Pengguna (Username)</label>
+            <input type="text" id="username" name="username" class="form-control" required autofocus placeholder="Username">
+          </div>
+          <div class="form-group">
+            <label for="password">Kata Sandi (Password)</label>
+            <input type="password" id="password" name="password" class="form-control" required placeholder="Password">
           </div>
           <button type="submit" class="btn">Masuk Panel</button>
         </form>
-        <p style="margin-top:20px; font-size:0.75rem; color:var(--text-muted)">Default password: <code>adminst2026</code></p>
+        <p style="margin-top:20px; font-size:0.75rem; color:var(--text-muted)">Default: <code>admin</code> / <code>12354321</code></p>
       </div>
     </main>
   <?php endif; ?>
