@@ -319,37 +319,12 @@ if (typeof ST_CONFIG !== 'undefined') {
   const locatorInput = document.getElementById('locator-input');
 
   function openLocator(utmCampaign = 'general', utmContent = 'button-click') {
-    if (!locatorModal) return;
-    locatorModal.classList.add('is-open');
-    locatorModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    
-    // Save UTM context on the form dataset so we can use it on submit
-    if (locatorForm) {
-      locatorForm.dataset.utmCampaign = utmCampaign;
-      locatorForm.dataset.utmContent = utmContent;
-    }
-    
-    if (typeof anime !== 'undefined') {
-      anime({
-        targets: locatorModal.querySelector('.locator-modal__content'),
-        translateY: [20, 0],
-        scale: [0.95, 1],
-        opacity: [0, 1],
-        duration: 800,
-        easing: 'easeOutElastic(1, .6)'
-      });
-      anime({
-        targets: locatorModal.querySelectorAll('.city-chip'),
-        scale: [0.8, 1],
-        opacity: [0, 1],
-        delay: anime.stagger(50, {start: 300}),
-        duration: 600,
-        easing: 'easeOutBack'
-      });
-    }
-    
-    setTimeout(() => locatorInput && locatorInput.focus(), 300);
+    // Redirect langsung ke URL luar dengan parameter UTM sesuai feedback atasan
+    const targetUrl = ST_CONFIG.buildStoreLocatorUrl({
+      utm_campaign: utmCampaign,
+      utm_content: utmContent
+    });
+    window.open(targetUrl, '_blank', 'noopener');
   }
 
   function closeLocator() {
