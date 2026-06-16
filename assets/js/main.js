@@ -324,6 +324,10 @@ if (typeof ST_CONFIG !== 'undefined') {
       utm_campaign: utmCampaign,
       utm_content: utmContent
     });
+    // Track via Umami if active
+    if (typeof umami !== 'undefined') {
+      umami.track('Open Store Locator', { campaign: utmCampaign, content: utmContent });
+    }
     window.open(targetUrl, '_blank', 'noopener');
   }
 
@@ -373,6 +377,10 @@ if (typeof ST_CONFIG !== 'undefined') {
         utm_content: content,
         city: city || undefined
       });
+      // Track via Umami if active
+      if (typeof umami !== 'undefined') {
+        umami.track('Search Store', { city: city || 'any', campaign: campaign, content: content });
+      }
       window.open(targetUrl, '_blank', 'noopener');
       closeLocator();
     });
@@ -440,6 +448,10 @@ if (typeof ST_CONFIG !== 'undefined') {
       const message = city
         ? `Halo ST, saya di ${city}. Bisa info di mana saya bisa beli ST di sekitar sini?`
         : `Halo ST, saya ingin tanya di mana toko ST terdekat dari lokasi saya.`;
+      // Track via Umami if active
+      if (typeof umami !== 'undefined') {
+        umami.track('WhatsApp Fallback Click', { city: city || 'none' });
+      }
       window.location.href = ST_CONFIG.buildWhatsappUrl(message);
     });
   }
